@@ -102,7 +102,7 @@ public class StudentView implements StudentViewI {
 
     //Remove student from DB
     private void delete() throws SQLException {
-        System.out.println("Update students info");
+        System.out.println("Delete student and all related information");
         System.out.println("Enter registration #:");
         String reg = scanner.nextLine();
         Student student = studentLogicI.find(reg);
@@ -110,15 +110,11 @@ public class StudentView implements StudentViewI {
             System.out.println("Student not registered");
             return;
         }
-        System.out.println("Enter new name:");
-        student.setName(scanner.nextLine());
-        System.out.println("Enter new course:");
-        student.setCourse(scanner.nextLine());
-        System.out.println("You are about to update the following students details:\n" + student.toString() + "\nContinue?\n1. Yes\n2. No");
+        System.out.println("You are about to remove the following students details:\n" + student.toString() + "\n. Action cannot be reversed.Continue?\n1. Yes\n2. No");
         int choice = scanner.nextInt();
         scanner.nextLine();
         if (choice == 1)
-            studentLogicI.update(student);
+            studentLogicI.delete(student);
     }
 
 }
