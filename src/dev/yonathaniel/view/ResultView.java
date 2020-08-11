@@ -1,7 +1,9 @@
 package dev.yonathaniel.view;
 
 import dev.yonathaniel.logic.CourseLogic;
-import dev.yonathaniel.logic.CourseLogicI;
+import dev.yonathaniel.logic.ResultLogic;
+import dev.yonathaniel.logic.resultLogicI;
+import dev.yonathaniel.logic.ResultLogicI;
 import dev.yonathaniel.logic.TeacherLogic;
 import dev.yonathaniel.model.Course;
 import dev.yonathaniel.model.Teacher;
@@ -12,11 +14,11 @@ import java.util.Scanner;
 
 public class ResultView implements ResultViewI {
     private Scanner scanner;
-    private CourseLogicI courseLogicI;
+    private ResultLogicI resultLogicI;
 
     public ResultView() throws SQLException, ClassNotFoundException {
         scanner = new Scanner(System.in);
-        courseLogicI = new CourseLogic();
+        resultLogicI = new ResultLogic();
     }
 
     //register new course
@@ -43,13 +45,13 @@ public class ResultView implements ResultViewI {
         int choice = scanner.nextInt();
         scanner.nextLine();
         if (choice == 1)
-            courseLogicI.add(course);
+            resultLogicI.add(course);
     }
 
     //show registered courses
     private void show() throws SQLException, ClassNotFoundException {
         System.out.println("List of courses from the DB");
-        List<Course> courses = courseLogicI.findAll();
+        List<Course> courses = resultLogicI.findAll();
         for (Course course : courses) {
             System.out.println(course.toStringRow());
         }
@@ -88,7 +90,7 @@ public class ResultView implements ResultViewI {
                     break;
             }
         } while (option != 0);
-        courseLogicI = null;
+        resultLogicI = null;
     }
 
     //update courses info
@@ -96,7 +98,7 @@ public class ResultView implements ResultViewI {
         System.out.println("Update courses info");
         System.out.println("Enter course ID #:");
         int id = scanner.nextInt();
-        Course course = courseLogicI.find(id);
+        Course course = resultLogicI.find(id);
         if (course == null) {
             System.out.println("course not registered");
             return;
@@ -121,7 +123,7 @@ public class ResultView implements ResultViewI {
         int choice = scanner.nextInt();
         scanner.nextLine();
         if (choice == 1)
-            courseLogicI.update(course);
+            resultLogicI.update(course);
     }
 
     //Remove course from DB
@@ -129,7 +131,7 @@ public class ResultView implements ResultViewI {
         System.out.println("Delete course and all related information");
         System.out.println("Enter course ID #:");
         int id = scanner.nextInt();
-        Course course = courseLogicI.find(id);
+        Course course = resultLogicI.find(id);
         if (course == null) {
             System.out.println("course not registered");
             return;
@@ -138,6 +140,6 @@ public class ResultView implements ResultViewI {
         int choice = scanner.nextInt();
         scanner.nextLine();
         if (choice == 1)
-            courseLogicI.delete(course);
+            resultLogicI.delete(course);
     }
 }

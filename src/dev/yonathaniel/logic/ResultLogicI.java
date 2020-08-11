@@ -18,5 +18,5 @@ public interface ResultLogicI {
 
     List<Result> findAll(int id) throws SQLException;
 
-    List<Result> findAll() throws SQLException;
+    List<Result> findAll() throws SQLException, ClassNotFoundException;
 }
