@@ -38,7 +38,7 @@ public class CourseView implements CourseViewI {
             if (teacher == null)
                 System.err.println("Teacher not found");
             else course.setTeacher(teacher);
-        } while (teacher != null);
+        } while (teacher == null);
 
         System.out.println("You are about to register the following course details:\n" + course.toString() + "\nContinue?\n1. Yes\n2. No");
         int choice = scanner.nextInt();
@@ -117,7 +117,7 @@ public class CourseView implements CourseViewI {
             if (teacher == null)
                 System.err.println("Teacher not found");
             else course.setTeacher(teacher);
-        } while (teacher != null);
+        } while (teacher == null);
         System.out.println("You are about to update the following courses' details:\n" + course.toString() + "\nContinue?\n1. Yes\n2. No");
         int choice = scanner.nextInt();
         scanner.nextLine();
