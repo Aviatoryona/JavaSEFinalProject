@@ -45,6 +45,24 @@ public class ResultView implements ResultViewI {
         }
     }
 
+    //show registered results for a course
+    private void showForCourse() throws SQLException, ClassNotFoundException {
+        System.out.println("List of results from the DB");
+        List<Result> results = resultLogicI.findAll();
+        for (Result result : results) {
+            System.out.println(result.toStringRow());
+        }
+    }
+
+    //show registered results for a student
+    private void showForStudent() throws SQLException, ClassNotFoundException {
+        System.out.println("List of results from the DB");
+        List<Result> results = resultLogicI.findAll();
+        for (Result result : results) {
+            System.out.println(result.toStringRow());
+        }
+    }
+
     /**/
     @Override
     public void menu() throws SQLException, ClassNotFoundException {
@@ -74,6 +92,10 @@ public class ResultView implements ResultViewI {
                     this.delete();
                     break;
                 case 4:
+                    this.show();
+                case 5:
+                    this.show();
+                case 6:
                     this.show();
                     break;
                 case 0:
