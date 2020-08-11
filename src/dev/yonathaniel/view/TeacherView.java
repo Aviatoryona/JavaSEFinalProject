@@ -46,12 +46,12 @@ public class TeacherView implements TeacherViewI {
     public void menu() throws SQLException {
         int option;
         do {
-            System.out.println("Welcome to Student Module. \n" +
+            System.out.println("Welcome to Teachers Module. \n" +
                     "Please select an option: \n" +
-                    "1. Register a student \n" +
-                    "2. Edit a student \n" +
-                    "3. Delete a student \n" +
-                    "4. Show list of students \n" +
+                    "1. Register a teacher \n" +
+                    "2. Edit a teacher \n" +
+                    "3. Delete a teacher \n" +
+                    "4. Show list of teachers \n" +
                     "0. Back to main menu \n");
             option = scanner.nextInt();
             scanner.nextLine();

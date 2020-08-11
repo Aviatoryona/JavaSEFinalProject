@@ -1,6 +1,7 @@
 package dev.yonathaniel;
 
 import dev.yonathaniel.view.StudentView;
+import dev.yonathaniel.view.TeacherView;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -14,14 +15,15 @@ public class Main {
             System.out.println("Welcome to School System:\n Please select an option:\n1. Manage Teachers\n2. Manage Students\n3. Exit");
             option = scanner.nextInt();
             scanner.nextLine();
-            switch (option){
+            switch (option) {
                 case 1:
+                    new TeacherView().menu();
                     break;
                 case 2:
                     studentView.menu();
                     break;
             }
-        } while(option != 3);
+        } while (option != 3);
         studentView = null;
     }
 }
