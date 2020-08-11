@@ -47,8 +47,14 @@ public class ResultView implements ResultViewI {
 
     //show registered results for a course
     private void showForCourse() throws SQLException, ClassNotFoundException {
+        System.out.println("Enter course ID");
+        int courseId = scanner.nextInt();
         System.out.println("List of results from the DB");
-        List<Result> results = resultLogicI.findAll();
+        List<Result> results = resultLogicI.findAll(courseId);
+        if (results == null) {
+            System.out.println("No records available");
+            return;
+        }
         for (Result result : results) {
             System.out.println(result.toStringRow());
         }
@@ -56,10 +62,17 @@ public class ResultView implements ResultViewI {
 
     //show registered results for a student
     private void showForStudent() throws SQLException, ClassNotFoundException {
-        System.out.println("List of results from the DB");
-        List<Result> results = resultLogicI.findAll();
-        for (Result result : results) {
-            System.out.println(result.toStringRow());
+        System.out.println("Enter course ID");
+        int courseId = scanner.nextInt();
+        List<Result> results = resultLogicI.findAll(courseId);
+        if (results == null) {
+            System.out.println("No records available");
+            return;
+        }
+        Result result = results.get(0);
+        System.out.println("List of results for " + result.getStudent().getName());
+        for (Result result1 : results) {
+            System.out.println(result1.toStringForStudent());
         }
     }
 

@@ -67,6 +67,11 @@ public class Result {
                 " Score: " + this.getScore() + "]";
     }
 
+    public String toStringForStudent() {
+        return " Course Title: " + this.getCourse().getTitle() + "," +
+                " Score: " + this.getScore() + "]";
+    }
+
     @Override
     public String toString() {
         return "\nid:" + this.getId() +
