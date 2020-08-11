@@ -18,7 +18,7 @@ public class TeacherView implements TeacherViewI {
         teacherLogicI = new TeacherLogic();
     }
 
-    //register new student
+    //register new teacher
     private void register() throws SQLException {
         Teacher teacher = new Teacher();
         System.out.println("Enter name:");
@@ -34,7 +34,7 @@ public class TeacherView implements TeacherViewI {
             teacherLogicI.add(teacher);
     }
 
-    //show registered students
+    //show registered teachers
     private void show() throws SQLException {
         System.out.println("List of students from the DB");
         List<Teacher> teachers = teacherLogicI.findAll();
@@ -79,41 +79,41 @@ public class TeacherView implements TeacherViewI {
         teacherLogicI = null;
     }
 
-    //update students info
+    //update teachers info
     private void update() throws SQLException {
         System.out.println("Update students info");
         System.out.println("Enter registration #:");
         String reg = scanner.nextLine();
-        Student student = teacherLogicI.find(reg);
-        if (student == null) {
+        Teacher teacher = teacherLogicI.find(reg);
+        if (teacher == null) {
             System.out.println("Student not registered");
             return;
         }
         System.out.println("Enter new name:");
-        student.setName(scanner.nextLine());
+        teacher.setName(scanner.nextLine());
         System.out.println("Enter new course:");
-        student.setCourse(scanner.nextLine());
-        System.out.println("You are about to update the following students details:\n" + student.toString() + "\nContinue?\n1. Yes\n2. No");
+        teacher.setCourse(scanner.nextLine());
+        System.out.println("You are about to update the following teachers' details:\n" + teacher.toString() + "\nContinue?\n1. Yes\n2. No");
         int choice = scanner.nextInt();
         scanner.nextLine();
         if (choice == 1)
-            teacherLogicI.update(student);
+            teacherLogicI.update(teacher);
     }
 
-    //Remove student from DB
+    //Remove teacher from DB
     private void delete() throws SQLException {
         System.out.println("Delete student and all related information");
         System.out.println("Enter registration #:");
         String reg = scanner.nextLine();
-        Student student = teacherLogicI.find(reg);
-        if (student == null) {
-            System.out.println("Student not registered");
+        Teacher teacher = teacherLogicI.find(reg);
+        if (teacher == null) {
+            System.out.println("Teacher not registered");
             return;
         }
-        System.out.println("You are about to remove the following students details:\n" + student.toString() + "\n. Action cannot be reversed.Continue?\n1. Yes\n2. No");
+        System.out.println("You are about to remove the following teachers' details:\n" + teacher.toString() + "\n. Action cannot be reversed.Continue?\n1. Yes\n2. No");
         int choice = scanner.nextInt();
         scanner.nextLine();
         if (choice == 1)
-            teacherLogicI.delete(student);
+            teacherLogicI.delete(teacher);
     }
 }
