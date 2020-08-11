@@ -1,11 +1,11 @@
 package dev.yonathaniel.model;
 
 public class Course {
-    String title;
-    double courseHours; //ie 45hrs, 35hrs
-    int levelOfStudy; //ie 1,2,3,4...
-    int id;
-    Teacher teacher;
+    private String title;
+    private double courseHours; //ie 45hrs, 35hrs
+    private int levelOfStudy; //ie 1,2,3,4...
+    private int id;
+    private Teacher teacher;
 
     public String getTitle() {
         return title;
