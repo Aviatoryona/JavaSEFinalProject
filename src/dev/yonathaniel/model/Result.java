@@ -6,13 +6,12 @@ public class Result {
     private int courseId;
     private double score;
 
-    public Result(int id, String studentRegNo, int courseId, double score) {
-        this.setId(id);
-        this.setStudentRegNo(studentRegNo);
-        this.setCourseId(courseId);
-        this.setScore(score);
-    }
+    //
+    private Student student;
+    private Course course;
 
+    public Result() {
+    }
 
     public int getId() {
         return id;
@@ -44,5 +43,35 @@ public class Result {
 
     public void setScore(double score) {
         this.score = score;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public String toStringRow() {
+        return "[id: " + this.getId() + ", Student Name: " + this.getStudent().getName() + "," +
+                " Course Title: " + this.getCourse().getTitle() + "," +
+                " Score: " + this.getScore() + "]";
+    }
+
+    @Override
+    public String toString() {
+        return "\nid:" + this.getId() +
+                "\nStudent Name:'" + this.getStudent().getName() +
+                "\nCourse Title:'" + this.getCourse().getTitle() +
+                "\nScore:'" + this.getScore();
     }
 }
