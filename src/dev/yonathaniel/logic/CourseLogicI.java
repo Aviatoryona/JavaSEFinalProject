@@ -14,7 +14,7 @@ public interface CourseLogicI {
 
     boolean delete(Course course) throws SQLException;
 
-    Course find(int id) throws SQLException;
+    Course find(int id) throws SQLException, ClassNotFoundException;
 
-    List<Course> findAll() throws SQLException;
+    List<Course> findAll() throws SQLException, ClassNotFoundException;
 }

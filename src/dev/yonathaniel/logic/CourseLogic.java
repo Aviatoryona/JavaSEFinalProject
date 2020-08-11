@@ -5,6 +5,7 @@ import dev.yonathaniel.db.DbConnection;
 import dev.yonathaniel.db.DbConnectionI;
 import dev.yonathaniel.model.Course;
 import dev.yonathaniel.model.Student;
+import dev.yonathaniel.model.Teacher;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -59,27 +60,32 @@ public class CourseLogic implements CourseLogicI {
     }
 
     @Override
-    public List<Course> findAll() throws SQLException {
+    public List<Course> findAll() throws SQLException, ClassNotFoundException {
         PreparedStatement preparedStatement = this
                 .dbConnectionI
                 .getConnection()
-                .prepareStatement("SELECT * FROM students");
+                .prepareStatement("SELECT * FROM course");
         ResultSet resultSet = dbConnectionI.executeQuery(preparedStatement);
-        List<Student> students = new ArrayList<>();
+        List<Course> courses = new ArrayList<>();
+        TeacherLogicI teacherLogicI = new TeacherLogic();
         while (resultSet.next()) {
-            Student student = new Student();
-            student.setId(resultSet.getLong("id"));
-            student.setCourse(resultSet.getString("course"));
-            student.setIdNumber(resultSet.getString("idNumber"));
-            student.setName(resultSet.getString("name"));
-            student.setRegistrationNo(resultSet.getString("registrationNo"));
-            students.add(student);
+            Course course = new Course();
+            course.setId(resultSet.getInt("id"));
+            course.setTitle(resultSet.getString("title"));
+            course.setCourseHours(resultSet.getDouble("coursehours"));
+            course.setLevelOfStudy(resultSet.getInt("level"));
+            Teacher teacher = teacherLogicI.find(resultSet.getString("teacherstaffno"));
+            course.setTeacher(teacher);
+            courses.add(course);
         }
-        return students;
+
+        //empty resource
+        ((TeacherLogic) teacherLogicI).close();
+        return courses;
     }
 
     @Override
-    public Course find(int id) throws SQLException {
+    public Course find(int id) throws SQLException, ClassNotFoundException {
         PreparedStatement preparedStatement = this
                 .dbConnectionI
                 .getConnection()
@@ -87,13 +93,18 @@ public class CourseLogic implements CourseLogicI {
         preparedStatement.setLong(1, id);
         ResultSet resultSet = dbConnectionI.executeQuery(preparedStatement);
         if (resultSet.next()) {
-            Student student = new Student();
-            student.setId(resultSet.getLong("id"));
-            student.setCourse(resultSet.getString("course"));
-            student.setIdNumber(resultSet.getString("idNumber"));
-            student.setName(resultSet.getString("name"));
-            student.setRegistrationNo(resultSet.getString("registrationNo"));
-            return student;
+            Course course = new Course();
+            course.setId(resultSet.getInt("id"));
+            course.setTitle(resultSet.getString("title"));
+            course.setCourseHours(resultSet.getDouble("coursehours"));
+            course.setLevelOfStudy(resultSet.getInt("level"));
+            TeacherLogicI teacherLogicI = new TeacherLogic();
+            Teacher teacher = teacherLogicI.find(resultSet.getString("teacherstaffno"));
+            course.setTeacher(teacher);
+
+            //empty resource
+            ((TeacherLogic) teacherLogicI).close();
+            return course;
         } else
             return null;
     }

@@ -111,4 +111,8 @@ public class TeacherLogic implements TeacherLogicI {
         } else
             return null;
     }
+
+    public void close() throws SQLException {
+        this.dbConnectionI.close();
+    }
 }
