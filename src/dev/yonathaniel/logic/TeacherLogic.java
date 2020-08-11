@@ -14,7 +14,7 @@ public class TeacherLogic implements TeacherLogicI {
     /**
      *
      */
-    DbConnectionI dbConnectionI;
+    private DbConnectionI dbConnectionI;
 
     public TeacherLogic() throws SQLException, ClassNotFoundException {
         this.dbConnectionI = new DbConnection();

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentLogic implements StudentLogicI {
-    DbConnectionI dbConnectionI;
+    private DbConnectionI dbConnectionI;
 
     public StudentLogic() throws SQLException, ClassNotFoundException {
         System.out.println("[" + this.getClass().getSimpleName() + "] getting connection...");
