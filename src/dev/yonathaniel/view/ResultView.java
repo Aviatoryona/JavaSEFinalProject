@@ -2,9 +2,7 @@ package dev.yonathaniel.view;
 
 import dev.yonathaniel.logic.ResultLogic;
 import dev.yonathaniel.logic.ResultLogicI;
-import dev.yonathaniel.logic.TeacherLogic;
 import dev.yonathaniel.model.Result;
-import dev.yonathaniel.model.Teacher;
 
 import java.sql.SQLException;
 import java.util.List;
