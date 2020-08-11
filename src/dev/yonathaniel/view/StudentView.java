@@ -10,14 +10,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class StudentView implements StudentViewI {
-    Scanner scanner;
-    StudentLogicI studentLogicI;
+    private Scanner scanner;
+    private StudentLogicI studentLogicI;
 
     public StudentView() throws SQLException, ClassNotFoundException {
         scanner = new Scanner(System.in);
         studentLogicI = new StudentLogic();
     }
 
+    //register new student
     private void register() throws SQLException {
         Student student = new Student();
         System.out.println("Enter name:");
@@ -35,6 +36,7 @@ public class StudentView implements StudentViewI {
             studentLogicI.add(student);
     }
 
+    //show registered students
     private void show() throws SQLException {
         System.out.println("List of students from the DB");
         List<Student> students = studentLogicI.findAll();
