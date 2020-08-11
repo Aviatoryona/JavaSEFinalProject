@@ -38,7 +38,7 @@ public class Teacher {
         this.staffNo = staffNo;
     }
 
-    public String toStringRow(){
+    public String toStringRow() {
         return "[id: " + this.getId() + ", name: " + this.getName() + ", StaffNo: " + this.getStaffNo() + ", course: " + this.getCourse() + "]";
     }
 

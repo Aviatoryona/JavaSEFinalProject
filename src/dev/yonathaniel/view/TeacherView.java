@@ -5,7 +5,6 @@ import dev.yonathaniel.logic.TeacherLogicI;
 import dev.yonathaniel.model.Teacher;
 
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -38,9 +37,8 @@ public class TeacherView implements TeacherViewI {
     private void show() throws SQLException {
         System.out.println("List of students from the DB");
         List<Teacher> teachers = teacherLogicI.findAll();
-        Iterator iterator = teachers.iterator();
-        while (iterator.hasNext()) {
-            System.out.println(((Teacher) iterator.next()).toStringRow());
+        for (Teacher teacher : teachers) {
+            System.out.println(teacher.toStringRow());
         }
     }
 
