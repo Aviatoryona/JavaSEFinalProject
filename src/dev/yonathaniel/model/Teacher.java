@@ -37,4 +37,16 @@ public class Teacher {
     public void setStaffNo(String staffNo) {
         this.staffNo = staffNo;
     }
+
+    public String toStringRow(){
+        return "[id: " + this.getId() + ", name: " + this.getName() + ", StaffNo: " + this.getStaffNo() + ", course: " + this.getCourse() + "]";
+    }
+
+    @Override
+    public String toString() {
+        return "\nid:" + id +
+                "\ncourse:'" + course +
+                "\nStaff NO:'" + staffNo +
+                "\nname:'" + name;
+    }
 }
