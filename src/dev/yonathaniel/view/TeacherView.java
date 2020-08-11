@@ -35,7 +35,7 @@ public class TeacherView implements TeacherViewI {
 
     //show registered teachers
     private void show() throws SQLException {
-        System.out.println("List of students from the DB");
+        System.out.println("List of teachers from the DB");
         List<Teacher> teachers = teacherLogicI.findAll();
         for (Teacher teacher : teachers) {
             System.out.println(teacher.toStringRow());
@@ -79,12 +79,12 @@ public class TeacherView implements TeacherViewI {
 
     //update teachers info
     private void update() throws SQLException {
-        System.out.println("Update students info");
+        System.out.println("Update teachers info");
         System.out.println("Enter registration #:");
         String reg = scanner.nextLine();
         Teacher teacher = teacherLogicI.find(reg);
         if (teacher == null) {
-            System.out.println("Student not registered");
+            System.out.println("teacher not registered");
             return;
         }
         System.out.println("Enter new name:");
@@ -100,7 +100,7 @@ public class TeacherView implements TeacherViewI {
 
     //Remove teacher from DB
     private void delete() throws SQLException {
-        System.out.println("Delete student and all related information");
+        System.out.println("Delete teacher and all related information");
         System.out.println("Enter registration #:");
         String reg = scanner.nextLine();
         Teacher teacher = teacherLogicI.find(reg);

@@ -15,7 +15,7 @@ public class StudentLogic implements StudentLogicI {
     private DbConnectionI dbConnectionI;
 
     public StudentLogic() throws SQLException, ClassNotFoundException {
-        System.out.println("[" + this.getClass().getSimpleName() + "] getting connection...");
+//        System.out.println("[" + this.getClass().getSimpleName() + "] getting connection...");
         this.dbConnectionI = new DbConnection();
     }
 
@@ -118,7 +118,7 @@ public class StudentLogic implements StudentLogicI {
 
     @Override
     protected void finalize() throws Throwable {
-        System.out.println("[" + this.getClass().getSimpleName() + "] closing connection...");
+//        System.out.println("[" + this.getClass().getSimpleName() + "] closing connection...");
         dbConnectionI.close();
     }
 }
