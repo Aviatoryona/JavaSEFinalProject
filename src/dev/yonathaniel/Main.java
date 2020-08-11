@@ -11,7 +11,6 @@ public class Main {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
         int option;
-        StudentView studentView = new StudentView();
         do {
             System.out.println("Welcome to School System:\n Please select an option:" +
                     "\n1. Manage Teachers" +
@@ -26,7 +25,7 @@ public class Main {
                     new TeacherView().menu();
                     break;
                 case 2:
-                    studentView.menu();
+                    new StudentView().menu();
                     break;
                 case 3:
                     new CourseView().menu();
