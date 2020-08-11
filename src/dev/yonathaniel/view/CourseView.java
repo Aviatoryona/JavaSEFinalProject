@@ -40,7 +40,7 @@ public class CourseView implements CourseViewI {
             else course.setTeacher(teacher);
         } while (teacher != null);
 
-        System.out.println("You are about to register the following details:\n" + course.toString() + "\nContinue?\n1. Yes\n2. No");
+        System.out.println("You are about to register the following course details:\n" + course.toString() + "\nContinue?\n1. Yes\n2. No");
         int choice = scanner.nextInt();
         scanner.nextLine();
         if (choice == 1)
@@ -92,19 +92,31 @@ public class CourseView implements CourseViewI {
     }
 
     //update courses info
-    private void update() throws SQLException {
+    private void update() throws SQLException, ClassNotFoundException {
         System.out.println("Update courses info");
-        System.out.println("Enter staff number #:");
-        String staffNo = scanner.nextLine();
-        Course course = courseLogicI.find(staffNo);
+        System.out.println("Enter course ID #:");
+        int id = scanner.nextInt();
+        Course course = courseLogicI.find(id);
         if (course == null) {
             System.out.println("course not registered");
             return;
         }
-        System.out.println("Enter new name:");
-        course.setName(scanner.nextLine());
-        System.out.println("Enter new course:");
-        course.setCourse(scanner.nextLine());
+        System.out.println("Enter new title:");
+        course.setTitle(scanner.nextLine());
+        System.out.println("Enter course hours #:");
+        course.setCourseHours(scanner.nextDouble());
+        scanner.nextLine();
+        System.out.println("Enter course level of study:");
+        course.setLevelOfStudy(scanner.nextInt());
+        scanner.nextLine();
+        Teacher teacher;
+        do {
+            System.out.println("Enter course teacher staff Number:");
+            teacher = new TeacherLogic().find(scanner.nextLine());
+            if (teacher == null)
+                System.err.println("Teacher not found");
+            else course.setTeacher(teacher);
+        } while (teacher != null);
         System.out.println("You are about to update the following courses' details:\n" + course.toString() + "\nContinue?\n1. Yes\n2. No");
         int choice = scanner.nextInt();
         scanner.nextLine();
