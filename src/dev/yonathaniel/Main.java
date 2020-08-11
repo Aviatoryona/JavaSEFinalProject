@@ -1,6 +1,7 @@
 package dev.yonathaniel;
 
 import dev.yonathaniel.view.CourseView;
+import dev.yonathaniel.view.ResultView;
 import dev.yonathaniel.view.StudentView;
 import dev.yonathaniel.view.TeacherView;
 
@@ -31,6 +32,7 @@ public class Main {
                     new CourseView().menu();
                     break;
                 case 4:
+                    new ResultView().menu();
                     break;
                 case 5:
                     System.out.println("Bye!!");
