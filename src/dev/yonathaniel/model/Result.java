@@ -74,9 +74,11 @@ public class Result {
 
     @Override
     public String toString() {
-        return "\nid:" + this.getId() +
-                "\nStudent Name:'" + this.getStudent().getName() +
-                "\nCourse Title:'" + this.getCourse().getTitle() +
-                "\nScore:'" + this.getScore();
+        if (getStudent() != null && getCourse() != null)
+            return "\nid:" + this.getId() +
+                    "\nStudent Name:'" + this.getStudent().getName() +
+                    "\nCourse Title:'" + this.getCourse().getTitle() +
+                    "\nScore:'" + this.getScore();
+        return "";
     }
 }
