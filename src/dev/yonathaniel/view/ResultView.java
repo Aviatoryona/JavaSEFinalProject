@@ -56,6 +56,8 @@ public class ResultView implements ResultViewI {
                     "2. Edit a result \n" +
                     "3. Delete a result \n" +
                     "4. Show list of results \n" +
+                    "5. Show list of course \n" +
+                    "6. Show list of student \n" +
                     "0. Back to main menu \n");
             option = scanner.nextInt();
             scanner.nextLine();
