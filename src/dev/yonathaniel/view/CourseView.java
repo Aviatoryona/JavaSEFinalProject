@@ -56,6 +56,7 @@ public class CourseView implements CourseViewI {
         }
     }
 
+    /**/
     @Override
     public void menu() throws SQLException, ClassNotFoundException {
         int option;
