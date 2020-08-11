@@ -89,7 +89,7 @@ public class CourseLogic implements CourseLogicI {
         PreparedStatement preparedStatement = this
                 .dbConnectionI
                 .getConnection()
-                .prepareStatement("SELECT * FROM students WHERE id = ?");
+                .prepareStatement("SELECT * FROM course WHERE id = ?");
         preparedStatement.setLong(1, id);
         ResultSet resultSet = dbConnectionI.executeQuery(preparedStatement);
         if (resultSet.next()) {

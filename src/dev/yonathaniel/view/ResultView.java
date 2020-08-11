@@ -62,10 +62,10 @@ public class ResultView implements ResultViewI {
 
     //show registered results for a student
     private void showForStudent() throws SQLException, ClassNotFoundException {
-        System.out.println("Enter course ID");
-        int courseId = scanner.nextInt();
-        List<Result> results = resultLogicI.findAll(courseId);
-        if (results == null) {
+        System.out.println("Enter student registration number");
+        String reg = scanner.nextLine();
+        List<Result> results = resultLogicI.find(reg);
+        if (results == null || results.isEmpty()) {
             System.out.println("No records available");
             return;
         }
@@ -106,10 +106,12 @@ public class ResultView implements ResultViewI {
                     break;
                 case 4:
                     this.show();
+                    break;
                 case 5:
-                    this.show();
+                    this.showForCourse();
+                    break;
                 case 6:
-                    this.show();
+                    this.showForStudent();
                     break;
                 case 0:
                     break;

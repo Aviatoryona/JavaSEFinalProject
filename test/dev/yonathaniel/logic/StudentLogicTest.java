@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.sql.SQLException;
 
 public class StudentLogicTest {
-    StudentLogicI studentLogicI;
+    private StudentLogicI studentLogicI;
 
     public StudentLogicTest() throws SQLException, ClassNotFoundException {
         studentLogicI = new StudentLogic();
@@ -47,6 +47,11 @@ public class StudentLogicTest {
 
     @Test
     public void delete() throws SQLException {
+        Student search = studentLogicI.find("FS04/22093/09");
+        Assert.assertNotNull(search);
+        studentLogicI.delete(search);
+        search = studentLogicI.find("FS04/22093/09");
+        Assert.assertNull(search);
     }
 
     @Test
