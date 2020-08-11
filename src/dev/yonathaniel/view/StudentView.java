@@ -79,6 +79,7 @@ public class StudentView implements StudentViewI {
         studentLogicI = null;
     }
 
+    //update students info
     private void update() throws SQLException {
         System.out.println("Update students info");
         System.out.println("Enter registration #:");
@@ -98,8 +99,26 @@ public class StudentView implements StudentViewI {
         if (choice == 1)
             studentLogicI.update(student);
     }
-    
-    private void delete() {
+
+    //Remove student from DB
+    private void delete() throws SQLException {
+        System.out.println("Update students info");
+        System.out.println("Enter registration #:");
+        String reg = scanner.nextLine();
+        Student student = studentLogicI.find(reg);
+        if (student == null) {
+            System.out.println("Student not registered");
+            return;
+        }
+        System.out.println("Enter new name:");
+        student.setName(scanner.nextLine());
+        System.out.println("Enter new course:");
+        student.setCourse(scanner.nextLine());
+        System.out.println("You are about to update the following students details:\n" + student.toString() + "\nContinue?\n1. Yes\n2. No");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        if (choice == 1)
+            studentLogicI.update(student);
     }
 
 }
