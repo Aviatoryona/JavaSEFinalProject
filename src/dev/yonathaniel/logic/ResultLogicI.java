@@ -14,9 +14,9 @@ public interface ResultLogicI {
 
     boolean delete(Result result) throws SQLException;
 
-    Result find(long id) throws SQLException;
+    List<Result> find(String studentRegNo) throws SQLException, ClassNotFoundException;
 
-    List<Result> findAll(int id) throws SQLException;
+    List<Result> findAll(int courseId) throws SQLException, ClassNotFoundException;
 
     List<Result> findAll() throws SQLException, ClassNotFoundException;
 }

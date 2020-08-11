@@ -3,9 +3,7 @@ package dev.yonathaniel.logic;
 
 import dev.yonathaniel.db.DbConnection;
 import dev.yonathaniel.db.DbConnectionI;
-import dev.yonathaniel.model.result;
 import dev.yonathaniel.model.Result;
-import dev.yonathaniel.model.Teacher;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -55,6 +53,32 @@ public class ResultLogic implements ResultLogicI {
         return dbConnectionI.execute(preparedStatement);
     }
 
+
+    @Override
+    public List<Result> findAll(int courseId) throws SQLException, ClassNotFoundException {
+        PreparedStatement preparedStatement = this
+                .dbConnectionI
+                .getConnection()
+                .prepareStatement("SELECT * FROM result WHERE courseid=?");
+        preparedStatement.setLong(1, courseId);
+        ResultSet resultSet = dbConnectionI.executeQuery(preparedStatement);
+        List<Result> results = new ArrayList<>();
+        while (resultSet.next()) {
+            Result result = new Result();
+            result.setId(resultSet.getInt("id"));
+            result.setStudentRegNo(resultSet.getString("studentregno"));
+            result.setCourseId(resultSet.getInt("courseid"));
+            result.setScore(resultSet.getInt("score"));
+            StudentLogicI studentLogicI = new StudentLogic();
+            CourseLogicI courseLogic = new CourseLogic();
+            result.setStudent(studentLogicI.find(resultSet.getString("studentregno")));
+            result.setCourse(courseLogic.find(resultSet.getInt("courseid")));
+            results.add(result);
+        }
+
+        return results;
+    }
+
     @Override
     public List<Result> findAll() throws SQLException, ClassNotFoundException {
         PreparedStatement preparedStatement = this
@@ -69,8 +93,8 @@ public class ResultLogic implements ResultLogicI {
             result.setStudentRegNo(resultSet.getString("studentregno"));
             result.setCourseId(resultSet.getInt("courseid"));
             result.setScore(resultSet.getInt("score"));
-            StudentLogicI studentLogicI=new StudentLogic();
-            CourseLogicI courseLogic=new CourseLogic();
+            StudentLogicI studentLogicI = new StudentLogic();
+            CourseLogicI courseLogic = new CourseLogic();
             result.setStudent(studentLogicI.find(resultSet.getString("studentregno")));
             result.setCourse(courseLogic.find(resultSet.getInt("courseid")));
             results.add(result);
@@ -80,28 +104,28 @@ public class ResultLogic implements ResultLogicI {
     }
 
     @Override
-    public Result find(int id) throws SQLException, ClassNotFoundException {
+    public List<Result> find(String studentRegNo) throws SQLException, ClassNotFoundException {
         PreparedStatement preparedStatement = this
                 .dbConnectionI
                 .getConnection()
-                .prepareStatement("SELECT * FROM students WHERE id = ?");
-        preparedStatement.setLong(1, id);
+                .prepareStatement("SELECT * FROM result WHERE studentregno = ?");
+        preparedStatement.setString(1, studentRegNo);
         ResultSet resultSet = dbConnectionI.executeQuery(preparedStatement);
-        if (resultSet.next()) {
-            result result = new result();
+        List<Result> results = new ArrayList<>();
+        while (resultSet.next()) {
+            Result result = new Result();
             result.setId(resultSet.getInt("id"));
-            result.setTitle(resultSet.getString("title"));
-            result.setresultHours(resultSet.getDouble("resulthours"));
-            result.setLevelOfStudy(resultSet.getInt("level"));
-            TeacherLogicI teacherLogicI = new TeacherLogic();
-            Teacher teacher = teacherLogicI.find(resultSet.getString("teacherstaffno"));
-            result.setTeacher(teacher);
+            result.setStudentRegNo(resultSet.getString("studentregno"));
+            result.setCourseId(resultSet.getInt("courseid"));
+            result.setScore(resultSet.getInt("score"));
+            StudentLogicI studentLogicI = new StudentLogic();
+            CourseLogicI courseLogic = new CourseLogic();
+            result.setStudent(studentLogicI.find(resultSet.getString("studentregno")));
+            result.setCourse(courseLogic.find(resultSet.getInt("courseid")));
+            results.add(result);
+        }
 
-            //empty resource
-            ((TeacherLogic) teacherLogicI).close();
-            return result;
-        } else
-            return null;
+        return results;
     }
 
     @Override
