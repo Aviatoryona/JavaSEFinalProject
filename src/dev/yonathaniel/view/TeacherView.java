@@ -80,9 +80,9 @@ public class TeacherView implements TeacherViewI {
     //update teachers info
     private void update() throws SQLException {
         System.out.println("Update teachers info");
-        System.out.println("Enter registration #:");
-        String reg = scanner.nextLine();
-        Teacher teacher = teacherLogicI.find(reg);
+        System.out.println("Enter staff number #:");
+        String staffNo = scanner.nextLine();
+        Teacher teacher = teacherLogicI.find(staffNo);
         if (teacher == null) {
             System.out.println("teacher not registered");
             return;
@@ -101,9 +101,9 @@ public class TeacherView implements TeacherViewI {
     //Remove teacher from DB
     private void delete() throws SQLException {
         System.out.println("Delete teacher and all related information");
-        System.out.println("Enter registration #:");
-        String reg = scanner.nextLine();
-        Teacher teacher = teacherLogicI.find(reg);
+        System.out.println("Enter staff Number #:");
+        String staffNo = scanner.nextLine();
+        Teacher teacher = teacherLogicI.find(staffNo);
         if (teacher == null) {
             System.out.println("Teacher not registered");
             return;
