@@ -1,5 +1,6 @@
 package dev.yonathaniel;
 
+import dev.yonathaniel.view.CourseView;
 import dev.yonathaniel.view.StudentView;
 import dev.yonathaniel.view.TeacherView;
 
@@ -12,7 +13,12 @@ public class Main {
         int option;
         StudentView studentView = new StudentView();
         do {
-            System.out.println("Welcome to School System:\n Please select an option:\n1. Manage Teachers\n2. Manage Students\n3. Exit");
+            System.out.println("Welcome to School System:\n Please select an option:" +
+                    "\n1. Manage Teachers" +
+                    "\n2. Manage Students" +
+                    "\n3. Manage Courses" +
+                    "\n4. Manage Results" +
+                    "\n5. Exit");
             option = scanner.nextInt();
             scanner.nextLine();
             switch (option) {
@@ -22,8 +28,15 @@ public class Main {
                 case 2:
                     studentView.menu();
                     break;
+                case 3:
+                    new CourseView().menu();
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    System.out.println("Bye!!");
+                    break;
             }
-        } while (option != 3);
-        studentView = null;
+        } while (option != 5);
     }
 }
