@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class StudentLogicTest {
     private StudentLogicI studentLogicI;
@@ -56,10 +57,15 @@ public class StudentLogicTest {
 
     @Test
     public void findAll() throws SQLException {
+        List<Student> students=studentLogicI.findAll();
+        Assert.assertNotNull(students);
+        Assert.assertFalse(students.isEmpty());
     }
 
     @Test
     public void find() throws SQLException {
-
+        Student student=studentLogicI.find("FS04/22093/09");
+        Assert.assertNotNull(student);
+        Assert.assertEquals(student.getName(),"GUSTEAU THE CHEF");
     }
 }

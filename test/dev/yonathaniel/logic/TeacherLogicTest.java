@@ -7,8 +7,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import java.sql.SQLException;
-
-import static org.junit.Assert.*;
+import java.util.List;
 
 public class TeacherLogicTest {
 
@@ -48,20 +47,28 @@ public class TeacherLogicTest {
     }
 
     @Test
-    public void delete() {
+    public void delete() throws SQLException {
+        Teacher search = teacherLogicI.find("FS04/22093/09");
+        Assert.assertNotNull(search);
+        teacherLogicI.delete(search);
+        search = teacherLogicI.find("FS04/22093/09");
+        Assert.assertNull(search);
     }
 
     @Test
-    public void findAll() {
+    public void findAll() throws SQLException {
+        List<Teacher> teachers=teacherLogicI.findAll();
+        Assert.assertNotNull(teachers);
+        Assert.assertFalse(teachers.isEmpty());
     }
 
     @Test
-    public void find() {
+    public void find() throws SQLException {
+        Teacher teacher=teacherLogicI.find("FS04/22093/09");
+        Assert.assertNotNull(teacher);
+        Assert.assertEquals(teacher.getName(),"MYK Aviator");
     }
 
-    @Test
-    public void find1() {
-    }
 
     @Ignore
     @Test
