@@ -53,6 +53,30 @@ public class ResultLogic implements ResultLogicI {
         return dbConnectionI.execute(preparedStatement);
     }
 
+    @Override
+    public Result findResult(int id) throws SQLException, ClassNotFoundException {
+        PreparedStatement preparedStatement = this
+                .dbConnectionI
+                .getConnection()
+                .prepareStatement("SELECT * FROM result WHERE id = ?");
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = dbConnectionI.executeQuery(preparedStatement);
+        if (resultSet.next()) {
+            Result result = new Result();
+            result.setId(resultSet.getInt("id"));
+            result.setStudentRegNo(resultSet.getString("studentregno"));
+            result.setCourseId(resultSet.getInt("courseid"));
+            result.setScore(resultSet.getInt("score"));
+            StudentLogicI studentLogicI = new StudentLogic();
+            CourseLogicI courseLogic = new CourseLogic();
+            result.setStudent(studentLogicI.find(resultSet.getString("studentregno")));
+            result.setCourse(courseLogic.find(resultSet.getInt("courseid")));
+            return result;
+        }
+
+        return null;
+    }
+
 
     @Override
     public List<Result> findAll(int courseId) throws SQLException, ClassNotFoundException {
