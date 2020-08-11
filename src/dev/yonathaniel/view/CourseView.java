@@ -125,11 +125,11 @@ public class CourseView implements CourseViewI {
     }
 
     //Remove course from DB
-    private void delete() throws SQLException {
+    private void delete() throws SQLException, ClassNotFoundException {
         System.out.println("Delete course and all related information");
-        System.out.println("Enter staff Number #:");
-        String staffNo = scanner.nextLine();
-        course course = courseLogicI.find(staffNo);
+        System.out.println("Enter course ID #:");
+        int id = scanner.nextInt();
+        Course course = courseLogicI.find(id);
         if (course == null) {
             System.out.println("course not registered");
             return;
