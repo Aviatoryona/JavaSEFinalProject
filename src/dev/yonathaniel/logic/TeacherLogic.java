@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TeacherLogic implements TeacherLogicI {
+    /**
+     *
+     */
     DbConnectionI dbConnectionI;
 
     public TeacherLogic() throws SQLException, ClassNotFoundException {
